@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Tạo tên màu Ma Sói</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 20%, #16213e 40%, #0f3460 60%, #1a1a2e 80%, #0f0f1e 100%);
+            background-size: 400% 400%;
+            background-attachment: fixed;
+            animation: gradientBg 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* iOS 26 Liquid Glass Container */
+        .container {
+            backdrop-filter: blur(25px) saturate(200%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 28px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 
+                0 0 50px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: visible;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 28px;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container:hover::before {
+            opacity: 1;
+        }
+
+        .container:hover::after {
+            opacity: 0.8;
+            box-shadow: 0 0 60px rgba(255, 81, 249, 0.15);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        input[type="text"],
+        input[type="color"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        input[type="text"]:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.32);
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.08),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(18px) saturate(170%);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 81, 249, 0.5);
+            box-shadow: 
+                0 0 30px rgba(255, 81, 249, 0.15),
+                inset 0 1px 2px rgba(255, 255, 255, 0.2),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(22px) saturate(190%);
+        }
+
+        input[type="color"] {
+            cursor: pointer;
+            padding: 8px;
+            height: 50px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        input[type="color"]:hover {
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.32);
+        }
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 5px;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .color-input-group {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .color-input-group input[type="text"] {
+            flex: 1;
+        }
+
+        .color-input-group input[type="color"] {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            padding: 3px;
+            border-radius: 14px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 10px;
+            transition: all 0.3s ease;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            flex: 1;
+        }
+
+        .checkbox-item:active {
+            background: rgba(255, 255, 255, 0.13);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #ff51f9;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: normal;
+            font-size: 14px;
+        }
+
+        .char-counter {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .char-counter.warning {
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        .char-counter.error {
+            color: #FF6B6B;
+            font-weight: 600;
+        }
+
+        .preview-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 28px;
+            backdrop-filter: blur(18px) saturate(180%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+        }
+
+        .preview-section:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.07) 100%);
+            border-color: rgba(255, 255, 255, 0.24);
+            box-shadow: 
+                0 0 25px rgba(255, 255, 255, 0.06),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .preview-label {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 0.6px;
+        }
+
+        .preview-name {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            min-height: 40px;
+            word-break: break-word;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.4s ease;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .code-display {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            word-break: break-all;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            min-height: 45px;
+        }
+
+        .code-display:hover {
+            background: rgba(0, 0, 0, 0.38);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 0 18px rgba(255, 255, 255, 0.06),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .code-text {
+            flex: 1;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            line-height: 1.3;
+        }
+
+        .copy-btn {
+            background: rgba(255, 81, 249, 0.25);
+            border: 1px solid rgba(255, 81, 249, 0.4);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            flex-shrink: 0;
+            backdrop-filter: blur(12px);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .copy-btn:active {
+            background: rgba(255, 81, 249, 0.3);
+            border-color: rgba(255, 81, 249, 0.5);
+            box-shadow: 0 0 18px rgba(255, 81, 249, 0.2);
+            transform: scale(0.96);
+        }
+
+        .copy-btn.copied {
+            background: rgba(79, 172, 254, 0.35);
+            border-color: rgba(79, 172, 254, 0.55);
+            box-shadow: 0 0 20px rgba(79, 172, 254, 0.25);
+        }
+
+        .special-chars-section {
+            margin-top: 30px;
+        }
+
+        .spoiler-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 14px 16px;
+            border-radius: 14px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(15px) saturate(180%);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .spoiler-toggle:active {
+            background: rgba(255, 255, 255, 0.13);
+            border-color: rgba(255, 255, 255, 0.28);
+            box-shadow: 
+                0 0 18px rgba(255, 255, 255, 0.08),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            transform: scale(0.98);
+        }
+
+        .spoiler-icon {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 16px;
+        }
+
+        .spoiler-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .spoiler-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .spoiler-content.open {
+            max-height: 300px;
+        }
+
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 8px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            margin-top: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            overflow-y: auto;
+            max-height: 280px;
+        }
+
+        .symbols-grid::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .symbols-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .symbols-grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .symbols-grid::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .symbol-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px;
+            border-radius: 11px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1;
+            backdrop-filter: blur(8px);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            -webkit-appearance: none;
+            appearance: none;
+            touch-action: manipulation;
+        }
+
+        .symbol-btn:active {
+            background: rgba(255, 81, 249, 0.2);
+            border-color: rgba(255, 81, 249, 0.4);
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 
+                0 4px 12px rgba(255, 81, 249, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Hiệu ứng glow theo chuột iOS 26 */
+        .glow-element {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 81, 249, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            filter: blur(40px);
+        }
+
+        /* Desktop Styles */
+        @media (hover: hover) {
+            input[type="text"]:hover {
+                background: rgba(255, 255, 255, 0.12);
+                border-color: rgba(255, 255, 255, 0.32);
+            }
+
+            .checkbox-item:hover {
+                background: rgba(255, 255, 255, 0.13);
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+            }
+
+            .copy-btn:hover {
+                background: rgba(255, 81, 249, 0.3);
+                border-color: rgba(255, 81, 249, 0.5);
+                box-shadow: 0 0 18px rgba(255, 81, 249, 0.2);
+                transform: translateY(-1px);
+            }
+
+            .spoiler-toggle:hover {
+                background: rgba(255, 255, 255, 0.13);
+                border-color: rgba(255, 255, 255, 0.28);
+                box-shadow: 
+                    0 0 18px rgba(255, 255, 255, 0.08),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            }
+
+            .symbol-btn:hover {
+                background: rgba(255, 81, 249, 0.18);
+                border-color: rgba(255, 81, 249, 0.35);
+                transform: scale(1.08) translateY(-2px);
+                box-shadow: 
+                    0 5px 15px rgba(255, 81, 249, 0.15),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            }
+        }
+
+        /* Mobile Optimized */
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                padding: 16px;
+                border-radius: 20px;
+                max-width: 100%;
+                box-shadow: 
+                    0 0 30px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            }
+
+            h1 {
+                font-size: 20px;
+                margin-bottom: 18px;
+            }
+
+            .form-group {
+                margin-bottom: 16px;
+            }
+
+            label {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            input[type="text"],
+            input[type="color"] {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+
+            .color-input-group input[type="color"] {
+                width: 45px;
+                height: 45px;
+            }
+
+            .checkbox-group {
+                gap: 8px;
+                margin-top: 10px;
+            }
+
+            .checkbox-item {
+                padding: 8px 10px;
+                gap: 8px;
+            }
+
+            .checkbox-item label {
+                font-size: 13px;
+            }
+
+            input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+            }
+
+            .char-counter {
+                font-size: 12px;
+                margin-top: 6px;
+            }
+
+            .preview-section {
+                padding: 14px;
+                margin-bottom: 16px;
+                border-radius: 16px;
+            }
+
+            .preview-label {
+                font-size: 11px;
+                margin-bottom: 8px;
+            }
+
+            .preview-name {
+                font-size: 22px;
+                margin-bottom: 10px;
+                min-height: 30px;
+            }
+
+            .code-display {
+                padding: 10px;
+                font-size: 10px;
+                border-radius: 10px;
+                gap: 8px;
+                min-height: 40px;
+            }
+
+            .code-text {
+                line-height: 1.2;
+            }
+
+            .copy-btn {
+                padding: 6px 10px;
+                font-size: 10px;
+                border-radius: 8px;
+            }
+
+            .special-chars-section {
+                margin-top: 16px;
+            }
+
+            .spoiler-toggle {
+                padding: 10px 12px;
+                font-size: 12px;
+                border-radius: 12px;
+            }
+
+            .spoiler-icon {
+                font-size: 12px;
+            }
+
+            .spoiler-content.open {
+                max-height: 240px;
+            }
+
+            .symbols-grid {
+                grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+                gap: 5px;
+                padding: 10px;
+                margin-top: 10px;
+                max-height: 220px;
+                border-radius: 10px;
+            }
+
+            .symbol-btn {
+                padding: 6px;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .container {
+                padding: 14px;
+            }
+
+            h1 {
+                font-size: 18px;
+                margin-bottom: 14px;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+            .preview-section {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+
+            .preview-name {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .checkbox-group {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .checkbox-item {
+                width: 100%;
+            }
+
+            .symbols-grid {
+                grid-template-columns: repeat(auto-fill, minmax(34px, 1fr));
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-element" id="glowElement"></div>
+    
+    <div class="container" id="container">
+        <h1>✨ Tạo tên màu Ma Sói</h1>
+
+        <div class="form-group">
+            <label for="characterName">Nhập tên nhân vật</label>
+            <input 
+                type="text" 
+                id="characterName" 
+                placeholder="Nhập tên của bạn..." 
+                value="Gojo Satoru"
+                maxlength="60"
+            >
+            <div class="char-counter">
+                <span id="charCount">11</span>/60 ký tự
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Chọn màu cho tên</label>
+            <div class="color-input-group">
+                <input 
+                    type="text" 
+                    id="colorHex" 
+                    placeholder="#ff51f9" 
+                    maxlength="7"
+                    value="#ff51f9"
+                >
+                <input 
+                    type="color" 
+                    id="colorPicker" 
+                    value="#ff51f9"
+                >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Định dạng</label>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="boldCheck">
+                    <label for="boldCheck"><b>In đậm</b></label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="italicCheck">
+                    <label for="italicCheck"><i>In nghiêng</i></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <div class="preview-label">Xem trước</div>
+            <div class="preview-name" id="previewName" style="color: #ff51f9;">Gojo Satoru</div>
+            
+            <div class="preview-label" style="margin-top: 12px;">Mã cho game</div>
+            <div class="code-display">
+                <span class="code-text" id="gameCode">&lt;color=#f59&gt;Gojo Satoru&lt;/color&gt;</span>
+                <button class="copy-btn" id="copyBtn">Sao chép</button>
+            </div>
+        </div>
+
+        <div class="special-chars-section">
+            <button class="spoiler-toggle" id="spoilerToggle" type="button">
+                <span>📋 Ký tự đặc biệt</span>
+                <span class="spoiler-icon">▼</span>
+            </button>
+            <div class="spoiler-content" id="spoilerContent">
+                <div class="symbols-grid" id="symbolsGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const characterName = document.getElementById('characterName');
+        const colorHex = document.getElementById('colorHex');
+        const colorPicker = document.getElementById('colorPicker');
+        const boldCheck = document.getElementById('boldCheck');
+        const italicCheck = document.getElementById('italicCheck');
+        const previewName = document.getElementById('previewName');
+        const gameCode = document.getElementById('gameCode');
+        const charCount = document.getElementById('charCount');
+        const charCounter = document.querySelector('.char-counter');
+        const copyBtn = document.getElementById('copyBtn');
+        const spoilerToggle = document.getElementById('spoilerToggle');
+        const spoilerContent = document.getElementById('spoilerContent');
+        const spoilerIcon = document.querySelector('.spoiler-icon');
+        const symbolsGrid = document.getElementById('symbolsGrid');
+        const container = document.getElementById('container');
+        const glowElement = document.getElementById('glowElement');
+
+        // Bảng ký tự đặc biệt - Unity Compatible
+        const specialChars = [
+            '♠', '♣', '♥', '♦', '★', '✓', '✗', '✧',
+            '◊', '●', '○', '◌', '◎', '☆', '⭐',
+            '→', '←', '↑', '↓', '⇒', '⇐', '⇑', '⇓',
+            '‖', '‗', '─', '━', '═', '╔', '╗', '╚',
+            '╝', '║', '╠', '╣', '╦', '╩', '╬', '┌',
+            '┐', '└', '┘', '├', '┤', '┬', '┴', '┼',
+            '■', '□', '▪', '▫', '▬', '▮', '▯', '▲',
+            '△', '▼', '▽', '◀', '▶', '◄', '►', '◆',
+            '※', '‼', '⁂', '❖', '⬛', '⬜', '⬜'
+        ];
+
+        // Render ký tự đặc biệt
+        specialChars.forEach(char => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'symbol-btn';
+            btn.textContent = char;
+            btn.onclick = (e) => {
+                e.preventDefault();
+                characterName.value += char;
+                updatePreview();
+                characterName.focus();
+            };
+            symbolsGrid.appendChild(btn);
+        });
+
+        // Shortcode hex converter (6 -> 3 ký tự)
+        function shortcodeHex(hex) {
+            let cleanHex = hex.replace('#', '').toUpperCase();
+            if (cleanHex.length !== 6) return hex;
+            return '#' + cleanHex[0] + cleanHex[2] + cleanHex[4];
+        }
+
+        // Validate hex color
+        function isValidHex(hex) {
+            return /^#[0-9A-F]{6}$/i.test(hex);
+        }
+
+        // Update preview
+        function updatePreview() {
+            let name = characterName.value;
+            
+            if (name.length > 60) {
+                characterName.value = name.substring(0, 60);
+                name = characterName.value;
+            }
+
+            // Update char counter
+            charCount.textContent = name.length;
+            if (name.length > 50) {
+                charCounter.classList.add('warning');
+            } else {
+                charCounter.classList.remove('warning');
+            }
+            if (name.length >= 60) {
+                charCounter.classList.add('error');
+            } else {
+                charCounter.classList.remove('error');
+            }
+
+            // Build preview with formatting
+            let displayName = name;
+            if (boldCheck.checked) {
+                displayName = `<b>${displayName}</b>`;
+            }
+            if (italicCheck.checked) {
+                displayName = `<i>${displayName}</i>`;
+            }
+
+            previewName.innerHTML = displayName;
+            previewName.style.color = colorHex.value;
+
+            // Build game code với mã rút gọn 3 ký tự
+            let tagContent = name;
+            if (boldCheck.checked) tagContent = `<b>${tagContent}</b>`;
+            if (italicCheck.checked) tagContent = `<i>${tagContent}</i>`;
+            
+            const shortHex = shortcodeHex(colorHex.value);
+            gameCode.textContent = `<color=${shortHex}>${tagContent}</color>`;
+        }
+
+        // Color input handlers
+        characterName.addEventListener('input', updatePreview);
+        boldCheck.addEventListener('change', updatePreview);
+        italicCheck.addEventListener('change', updatePreview);
+
+        colorPicker.addEventListener('input', (e) => {
+            colorHex.value = e.target.value;
+            updatePreview();
+        });
+
+        colorHex.addEventListener('input', (e) => {
+            let value = e.target.value.toUpperCase();
+            
+            if (value && !value.startsWith('#')) {
+                value = '#' + value;
+            }
+
+            if (isValidHex(value)) {
+                colorPicker.value = value;
+                colorHex.value = value;
+                updatePreview();
+            }
+        });
+
+        // Copy functionality
+        copyBtn.addEventListener('click', () => {
+            const text = gameCode.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.classList.add('copied');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✓ Sao chép';
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.textContent = originalText;
+                }, 1500);
+            });
+        });
+
+        // Spoiler toggle
+        spoilerToggle.addEventListener('click', () => {
+            spoilerContent.classList.toggle('open');
+            spoilerIcon.classList.toggle('open');
+        });
+
+        // iOS 26 Liquid Glass - Hiệu ứng glow theo chuột (chỉ trên desktop)
+        if (window.matchMedia('(hover: hover)').matches) {
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX - 250;
+                const y = e.clientY - 250;
+                
+                glowElement.style.left = x + 'px';
+                glowElement.style.top = y + 'px';
+
+                const rect = container.getBoundingClientRect();
+                const distX = Math.abs(e.clientX - (rect.left + rect.width / 2));
+                const distY = Math.abs(e.clientY - (rect.top + rect.height / 2));
+                const distance = Math.sqrt(distX * distX + distY * distY);
+                const maxDistance = 500;
+
+                if (distance < maxDistance) {
+                    glowElement.style.opacity = Math.max(0, 1 - distance / maxDistance) * 0.7;
+                } else {
+                    glowElement.style.opacity = '0';
+                }
+            });
+        }
+
+        // Initial preview
+        updatePreview();
+    </script>
+</body>
+</html>
