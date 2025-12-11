@@ -37,7 +37,7 @@
 ## 🚀 Cách sử dụng
 
 ### 🌐 Online (Khuyến nghị)
-1. Truy cập: **[https://thuanlyt.github.io/masoi](https://thuanlyt.github.io/masoi)**
+1. Truy cập: **[https://thuanlyt.id.vn/masoi.html](https://thuanlyt.id.vn/masoi.html)**
 2. Điền tên nhân vật
 3. Chọn màu
 4. Tick định dạng (nếu cần)
